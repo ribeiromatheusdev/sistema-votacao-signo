@@ -9,4 +9,8 @@ router.get("/enquetes", enqueteController.list);
 
 router.post("/enquetes/:enquete_id/votar/:opcao_id", enqueteController.vote);
 
+router.put("/enquetes/:id", enqueteController.update);
+
+router.delete("/enquetes/:id", enqueteController.delete);
+
 export default router;

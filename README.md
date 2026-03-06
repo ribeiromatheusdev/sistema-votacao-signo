@@ -1,48 +1,39 @@
-# Sistema de Votação (Enquetes) em Tempo Real
+# Sistema de Votação (Enquetes)
 
-Este projeto é um sistema completo para gerenciamento e visualização de enquetes, desenvolvido como teste técnico. Ele permite a criação de enquetes com múltiplas opções dinâmicas, controle de vigência (data de início e fim) e atualização de votos em tempo real.
+Este projeto é uma API robusta e uma interface de usuário para gerenciamento de enquetes, desenvolvido como teste técnico. O foco principal foi a aplicação de uma arquitetura limpa (Clean Architecture) com separação de responsabilidades entre Models, Services e Controllers.
 
 ## Tecnologias Utilizadas
 
-**Backend (API Rest):**
+**Backend:**
 
-- **Node.js e Express:** Roteamento e lógica da aplicação.
-- **MySQL e Sequelize (ORM):** Banco de dados relacional para persistência de dados.
-- **Socket.io:** WebSockets para atualização dos votos em tempo real.
+- **Node.js (ES Modules):** Ambiente de execução.
+- **Express:** Framework web para construção da API REST.
+- **Sequelize ORM & Migrations:** Gerenciamento profissional do banco de dados MySQL.
+- **Dotenv:** Gerenciamento de variáveis de ambiente.
+- **CORS:** Segurança e permissão de acesso entre Front e Back.
 
 **Frontend:**
 
-- **HTML5 e CSS3:** Estrutura e estilização.
-- **Flexbox:** Para construção de layouts responsivos e alinhamentos precisos.
-- **JavaScript:** Consumo da API e conexão com WebSockets.
+- **HTML5:** Estrutura da interface.
+- **Tailwind CSS:** Estilização moderna e responsiva via utilitários.
+- **JavaScript (Fetch API):** Consumo assíncrono da API para votação e listagem.
 
 ---
 
-## Funcionalidades
+## Funcionalidades Implementadas
 
-### Gerenciamento (CRUD)
+### Backend (Regras de Negócio)
 
-- **Criar Enquete:** Definição de título, data/hora de início e data/hora de término.
-- **Opções Dinâmicas:** Cadastro obrigatório de no mínimo 3 opções de resposta por enquete.
-- **Edição e Exclusão:** Gerenciamento completo das enquetes criadas.
+- **Criação de Enquetes:** Cadastro com título, data de início e data de término.
+- **Validação de Opções:** Bloqueio automático no Service caso a enquete possua menos de 3 opções.
+- **Status Dinâmico:** Cálculo em tempo real do status (_Não iniciada_, _Em andamento_ ou _Finalizada_) baseado na data atual do servidor.
+- **Controle de Votação:** O sistema impede votos em enquetes fora do período de vigência, retornando erro de regra de negócio.
 
-### Visualização e Votação
+### Frontend (Interface)
 
-- **Listagem de Enquetes:** Exibe todas as enquetes com seus respectivos status (_Não iniciada_, _Em andamento_, _Finalizada_).
-- **Página da Enquete:** \* Apresenta as opções e o período de vigência.
-  - Exibe o total de votos ao lado de cada opção.
-- **Regras de Negócio de Votação:**
-  - O botão de votar e as opções ficam **desabilitados** caso a enquete não esteja no período ativo (antes do início ou após o término).
-  - **Realtime:** Os resultados são atualizados instantaneamente na tela para todos os usuários conectados sempre que um novo voto é computado.
-
----
-
-## Pré-requisitos
-
-Para rodar este projeto localmente, você precisará ter instalado em sua máquina:
-
-- [Node.js](https://nodejs.org/) (versão 18+ recomendada)
-- [MySQL](https://www.mysql.com/) (Instância local ou em nuvem)
+- **Dashboard de Enquetes:** Listagem automática de todas as enquetes cadastradas.
+- **Feedback Visual:** Botões de votação são desabilitados e estilizados automaticamente caso a enquete não esteja ativa.
+- **Criação Simplificada:** Modal para cadastro de novas enquetes com opções dinâmicas.
 
 ---
 
@@ -52,19 +43,20 @@ Para rodar este projeto localmente, você precisará ter instalado em sua máqui
 
 ```bash
 git clone https://github.com/ribeiromatheusdev/sistema-votacao-signo
-cd sistema-votacao-signo
+cd sistema-votacao-signo/backend
 ```
 
-**2. Instale as dependências do Backend**
+**2. Instale as dependências**
 
 ```bash
 npm install
 ```
 
-**3. Configure as Variáveis de Ambiente**
-Crie um arquivo `.env` na raiz do projeto com base no arquivo `.env.example` e insira as credenciais do seu banco de dados MySQL:
+**3. Configure o Banco de Dados**
 
-```env
+Crie um arquivo .env na raiz da pasta backend seguindo o modelo abaixo:
+
+```bash
 DB_NAME=sistema_votacao
 DB_USER=seu_usuario
 DB_PASSWORD=sua_senha
@@ -73,22 +65,25 @@ DB_DIALECT=mysql
 PORT=3000
 ```
 
-**4. Execute as Migrations (Criação das tabelas)**
+**4. Execute as Migrations**
+
+Para criar as tabelas e relacionamentos no seu MySQL:
 
 ```bash
 npx sequelize-cli db:migrate
 ```
 
-**5. Inicie o Servidor**
+**5. Inicie a API**
 
 ```bash
 npm run dev
 ```
 
-_O servidor iniciará na porta 3000 (ou a definida no .env) e o frontend poderá ser acessado pelo navegador._
+**6. Acesse o Frontend**
 
----
+Basta abrir o arquivo index.html (localizado na pasta frontend) no seu navegador preferido.
 
 ## Autor
 
-**Matheus Ribeiro** Estudante de Engenharia de Software e Desenvolvedor.
+**Matheus Ribeiro**
+Estudante de Engenharia de Software.

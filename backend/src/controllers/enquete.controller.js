@@ -28,6 +28,32 @@ const enqueteController = {
     }
   },
 
+  async update(req, res) {
+    try {
+      const { id } = req.params;
+      const { titulo, data_inicio, data_final } = req.body;
+      const atualizada = await enqueteService.update(
+        id,
+        titulo,
+        data_inicio,
+        data_final,
+      );
+      return res.json(atualizada);
+    } catch (error) {
+      return res.status(400).json({ erro: error.message });
+    }
+  },
+
+  async delete(req, res) {
+    try {
+      const { id } = req.params;
+      const resultado = await enqueteService.delete(id);
+      return res.json(resultado);
+    } catch (error) {
+      return res.status(400).json({ erro: error.message });
+    }
+  },
+
   async vote(req, res) {
     try {
       const { enquete_id, opcao_id } = req.params;

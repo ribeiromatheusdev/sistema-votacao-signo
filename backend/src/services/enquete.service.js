@@ -51,6 +51,22 @@ const enqueteService = {
     });
   },
 
+  async update(id, titulo, dataInicio, dataFinal) {
+    const enquete = await Enquete.findByPk(id);
+    if (!enquete) throw new Error("Enquete não encontrada");
+
+    await enquete.update({ titulo, dataInicio, dataFinal });
+    return enquete;
+  },
+
+  async delete(id) {
+    const enquete = await Enquete.findByPk(id);
+    if (!enquete) throw new Error("Enquete não encontrada");
+
+    await enquete.destroy();
+    return { mensagem: "Enquete excluída com sucesso" };
+  },
+
   async vote(enqueteId, opcaoId) {
     const enquete = await Enquete.findByPk(enqueteId);
 
