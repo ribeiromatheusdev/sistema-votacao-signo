@@ -1,0 +1,38 @@
+# Dependências
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Variáveis de ambiente e arquivos de configuração locais (MUITO IMPORTANTE)
+.env
+.env.test
+.env.local
+
+# Logs da aplicação
+logs/
+*.log
+
+# Pastas de build/compilação (caso venha a usar TypeScript ou transpilar o código no futuro)
+dist/
+build/
+
+# Relatórios de cobertura de testes
+coverage/
+.nyc_output/
+
+# Arquivos de banco de dados locais (caso decida usar SQLite para testes rápidos)
+*.sqlite
+*.sqlite3
+
+# Arquivos gerados pelo Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de configuração de IDEs e Editores de Código
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
