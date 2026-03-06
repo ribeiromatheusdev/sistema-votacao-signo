@@ -1,11 +1,13 @@
 import express from "express";
+import cors from "cors";
+import enqueteRoutes from "./routes/enquete.route.js";
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
 
-app.get("/api", (req, res) => {
-  res.json({ status: 200, mensagem: "Funcionando" });
-});
+app.use("/api", enqueteRoutes);
 
 export default app;

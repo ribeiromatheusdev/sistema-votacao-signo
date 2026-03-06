@@ -3,13 +3,13 @@ import Enquete from "./enquete.model.js";
 import OpcaoResposta from "./opcaoResposta.model.js";
 
 Enquete.hasMany(OpcaoResposta, {
-  as: "tb_opcao_resposta",
+  as: "opcoes",
   foreignKey: "enquete_id",
   onDelete: "CASCADE",
 });
 
 OpcaoResposta.belongsTo(Enquete, {
-  foreignKey: "opcao_resposta_id",
+  foreignKey: "enquete_id",
 });
 
 export { sequelize, Enquete, OpcaoResposta };
