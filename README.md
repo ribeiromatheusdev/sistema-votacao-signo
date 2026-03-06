@@ -86,4 +86,4 @@ Basta abrir o arquivo index.html (localizado na pasta frontend) no seu navegador
 ## Autor
 
 **Matheus Ribeiro**
-Estudante de Engenharia de Software.
+Estudante de Engenharia de Software e Desenvolvedor.
